@@ -1,0 +1,19 @@
+name: pipelinePy
+
+on: push
+
+env:
+   FILE_NAME: hello-world
+
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout the code
+          uses: actions/checkout@v2
+
+        - name: Test
+          uses: PrajjawalBanati/Python-actions@0.0.1
+          with:
+              file: ${{env.FILE_NAME}}
+              path: .
