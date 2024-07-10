@@ -1,0 +1,41 @@
+name: Lint JavaScript Code
+
+on: push
+
+env: 
+  ARTIFACT_NAME: myArtifact
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install -g npm@latest # Update npm to the latest version
+
+      - name: Run ESLint
+        run: npx eslint hello-world.js
+
+      - name: Run Tests
+        run: |
+          npm test  # Replace with your test command if applicable
+
+      - name: Deploy Artifacts
+        if: success()  # Deploy artifacts only if previous steps were successful
+        run: |
+          echo "Deploying artifacts..."  # Replace with your deployment commands
+
+      - name: Upload Artifacts
+        if: success()  # Upload artifacts only if previous steps were successful
+        uses: actions/upload-artifact@v2
+        with:
+            name: ${{env.ARTIFACT_NAME}}
+            path: .
