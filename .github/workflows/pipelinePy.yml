@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: create an artifact
-        uses: opencontextinc/create-artifact-yaml@v1.0.1
+        uses: actions/upload-artifact@v4.3.4
         with:
             file: ${{env.FILE_NAME}}
             path: ./${{env.FILE_NAME}}.py
