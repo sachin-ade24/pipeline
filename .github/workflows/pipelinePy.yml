@@ -16,4 +16,4 @@ jobs:
           uses: fedora-python/tox-github-action@v39.0
           with:
               file: ${{env.FILE_NAME}}
-              path: .
+              path: ./${{env.FILE_NAME}}.py
